@@ -79,7 +79,6 @@ class IntroState : public Ogre::Singleton<IntroState>, public GameState
     box,
     sheep
   };
-
   void CreateInitialWorld();
   void AddDynamicObject(TEDynamicObject tObject);
   RigidBody* pickBody(Vector3 &p, Ray &r, float x, float y);

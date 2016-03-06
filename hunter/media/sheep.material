@@ -1,0 +1,63 @@
+material sheep_eyelids/SOLID/TEX/char_sheep_col.png
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			diffuse 0.476863 0.143615 0.143615
+			specular 0.700000 0.700000 0.700000 11.000000
+			texture_unit
+			{
+				texture char_sheep_col.png
+			}
+		}
+	}
+}
+material sheep_eyes/SOLID/TEX/char_sheep_col.png
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			diffuse 1.000000 1.000000 1.000000
+			specular 0.400000 0.282865 0.256086 127.750000
+			texture_unit
+			{
+				texture char_sheep_col.png
+			}
+		}
+	}
+}
+material sheep_white/SOLID/TEX/char_sheep_col.png
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			specular 0.000000 0.000000 0.000000 0.250000
+			texture_unit
+			{
+				texture char_sheep_col.png
+			}
+		}
+	}
+}
+material sheep_face/SOLID/TEX/char_sheep_col.png
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			diffuse 1.000000 0.776685 0.776685
+			specular 0.295068 0.213548 0.201493 2.000000
+			texture_unit
+			{
+				texture char_sheep_col.png
+			}
+		}
+	}
+}

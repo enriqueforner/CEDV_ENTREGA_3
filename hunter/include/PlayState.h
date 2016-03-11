@@ -26,6 +26,18 @@
 
 #include "GameState.h"
 
+#include <OgreOverlaySystem.h>
+#include <OgreOverlayElement.h>
+#include <OgreOverlayManager.h>
+
+#include <OgreBulletDynamicsRigidBody.h>
+#include <Shapes/OgreBulletCollisionsStaticPlaneShape.h>
+#include <Shapes/OgreBulletCollisionsBoxShape.h>
+
+using namespace Ogre;
+using namespace OgreBulletCollisions;
+using namespace OgreBulletDynamics;
+
 class PlayState : public Ogre::Singleton<PlayState>, public GameState
 {
  public:
@@ -55,6 +67,23 @@ class PlayState : public Ogre::Singleton<PlayState>, public GameState
   Ogre::SceneManager* _sceneMgr;
   Ogre::Viewport* _viewport;
   Ogre::Camera* _camera;
+  
+  OverlayManager* _overlayManager;
+  OgreBulletDynamics::DynamicsWorld * _world;
+  OgreBulletCollisions::DebugDrawer * _debugDrawer;
+  int _numEntities;
+  float _timeLastObject;
+
+  std::deque <OgreBulletDynamics::RigidBody *>         _bodies;
+  std::deque <OgreBulletCollisions::CollisionShape *>  _shapes;
+
+  enum TEDynamicObject {
+    box,
+    sheep
+  };
+  void CreateInitialWorld();
+  void AddDynamicObject(TEDynamicObject tObject);
+  RigidBody* pickBody(Vector3 &p, Ray &r, float x, float y);
 
   bool _exitGame;
 };

@@ -6,7 +6,7 @@ void
 PauseState::enter ()
 {
   _root = Ogre::Root::getSingletonPtr();
-
+  std::cout << "Pause State" << std::endl;
   // Se recupera el gestor de escena y la cámara.
   _sceneMgr = _root->getSceneManager("SceneManager");
   _camera = _sceneMgr->getCamera("IntroCamera");

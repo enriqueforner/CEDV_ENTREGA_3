@@ -1,6 +1,6 @@
 #include "IntroState.h"
 #include "PlayState.h"
-
+#include "IntroScene.h"
 template<> IntroState* Ogre::Singleton<IntroState>::msSingleton = 0;
 
 IntroState::IntroState(){
@@ -16,13 +16,15 @@ IntroState::enter ()
   _sceneMgr = _root->getSceneManager("SceneManager");
   _camera = _sceneMgr->createCamera("IntroCamera");
   _viewport = _root->getAutoCreatedWindow()->addViewport(_camera);
-  _viewport->setBackgroundColour(Ogre::ColourValue(1.0, 1.0, 1.0));
+  //_viewport->setBackgroundColour(Ogre::ColourValue(1.0, 1.0, 1.0));
 
   if (_timesCreated<1){
     loadCEGUI();
     _timesCreated++;
   }
 
+  IntroScene* iS = new IntroScene(_sceneMgr);
+  iS-> crearMenuInicioCEGUI();
   _exitGame = false;
 }
 
@@ -82,19 +84,43 @@ void
 IntroState::mouseMoved
 (const OIS::MouseEvent &e)
 {
+   CEGUI::System::getSingleton().getDefaultGUIContext().injectMouseMove(e.state.X.rel, e.state.Y.rel);  
 }
 
 void
 IntroState::mousePressed
 (const OIS::MouseEvent &e, OIS::MouseButtonID id)
 {
+  CEGUI::System::getSingleton().getDefaultGUIContext().injectMouseButtonDown(convertMouseButton(id)); 
 }
 
 void
 IntroState::mouseReleased
 (const OIS::MouseEvent &e, OIS::MouseButtonID id)
 {
+  CEGUI::System::getSingleton().getDefaultGUIContext().injectMouseButtonUp(convertMouseButton(id));
 }
+
+CEGUI::MouseButton IntroState::convertMouseButton(OIS::MouseButtonID id)
+{
+  CEGUI::MouseButton ceguiId;
+  switch(id)
+    {
+    case OIS::MB_Left:
+      ceguiId = CEGUI::LeftButton;
+      break;
+    case OIS::MB_Right:
+      ceguiId = CEGUI::RightButton;
+      break;
+    case OIS::MB_Middle:
+      ceguiId = CEGUI::MiddleButton;
+      break;
+    default:
+      ceguiId = CEGUI::LeftButton;
+    }
+  return ceguiId;
+}
+
 
 IntroState*
 IntroState::getSingletonPtr ()

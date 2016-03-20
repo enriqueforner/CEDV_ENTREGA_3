@@ -134,7 +134,7 @@ GameManager::configure ()
     }
   }
   
-  _renderWindow = _root->initialise(true, "Pac-Manian");
+  _renderWindow = _root->initialise(true, "Hunterian");
   
   Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
   

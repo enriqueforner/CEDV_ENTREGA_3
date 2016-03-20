@@ -52,6 +52,8 @@ class IntroState : public Ogre::Singleton<IntroState>, public GameState
   static IntroState& getSingleton ();
   static IntroState* getSingletonPtr ();
 
+  CEGUI::MouseButton convertMouseButton(OIS::MouseButtonID id);
+
   void loadCEGUI();
 
  protected:

@@ -74,7 +74,8 @@ void PlayState::CreateInitialWorld() {
   std::cout << "Hola" << std::endl;
   
   // Anadimos los objetos Shape y RigidBody ------------------------
-  //_shapes.push_back(Shape);      _bodies.push_back(rigidBodyPlane);
+  _shapes.push_back(Shape);      
+  _bodies.push_back(rigidBodyPlane);
 
 }
 

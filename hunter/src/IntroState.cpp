@@ -14,7 +14,12 @@ IntroState::enter ()
 {
   
   _sceneMgr = _root->getSceneManager("SceneManager");
+  _sceneMgr -> setAmbientLight(Ogre::ColourValue(1,1,1));
   _camera = _sceneMgr->createCamera("IntroCamera");
+  _camera->setPosition(Ogre::Vector3(5,20,56));
+  _camera->lookAt(Ogre::Vector3(0,0,0));
+  _camera->setNearClipDistance(5);
+  _camera->setFarClipDistance(10000);
   _viewport = _root->getAutoCreatedWindow()->addViewport(_camera);
   //_viewport->setBackgroundColour(Ogre::ColourValue(1.0, 1.0, 1.0));
 
@@ -25,6 +30,7 @@ IntroState::enter ()
 
   IntroScene* iS = new IntroScene(_sceneMgr);
   iS-> crearMenuInicioCEGUI();
+  iS-> crearWorld();
   _exitGame = false;
 }
 
@@ -121,6 +127,10 @@ CEGUI::MouseButton IntroState::convertMouseButton(OIS::MouseButtonID id)
   return ceguiId;
 }
 
+bool IntroState::exitButtonC(const CEGUI::EventArgs& e){
+    _exitGame = true;
+    return true; 
+}
 
 IntroState*
 IntroState::getSingletonPtr ()

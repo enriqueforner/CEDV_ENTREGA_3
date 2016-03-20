@@ -10,7 +10,7 @@ class IntroScene {
 public:
 	IntroScene(Ogre::SceneManager *sceneManager);
 	~IntroScene();
-	void crearMenuInicio();
+	void crearWorld();
 	void crearMenuInicioCEGUI();
 
 private:
